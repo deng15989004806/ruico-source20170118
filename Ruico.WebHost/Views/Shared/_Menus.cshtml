@@ -1,0 +1,55 @@
+﻿@using Ruico.Infrastructure.Utility.Helper
+@model List<Ruico.Infrastructure.Authorize.AuthObject.MenuForAuthorize>
+@{
+    var currentModuleId = ViewBag.CurrentModuleId as string;
+    var menus = Model.Where(x => x.ModuleId.ToString() == currentModuleId);
+    var topMenus = menus.Where(x => x.MenuDepth == 1).OrderBy(x => x.MenuSortOrder);
+}
+
+<div id="sidebar">
+    <ul>
+        @foreach (var top in topMenus)
+        {
+            var subMenus = menus.Where(x => x.ParentMenuId == top.MenuId);
+            if (subMenus.Any(x => x.MenuUrl.IsNullOrBlank()))
+            {
+                // 有第三级菜单
+                <li class="submenu" id="menu-@top.MenuId">
+                    <a href="#"><i class="icon icon-th-list"></i> <span>@top.MenuName</span> <span class="label">@subMenus.Count()</span></a>
+                    <ul>
+                        @foreach (var m in subMenus)
+                        {
+                            var sub2Menus = menus.Where(x => x.ParentMenuId == m.MenuId);
+                            <li>
+                                <dl id="smenu-@m.MenuId">
+                                    <dt><a href="#"><i class="icon icon-plus"></i> <span>@m.MenuName</span> <span class="label">@sub2Menus.Count()</span></a></dt>
+                                    <dd>
+                                        @foreach (var m2 in sub2Menus)
+                                        {
+                                            var url = m2.MenuUrl.IsNullOrBlank() ? "#" : m2.MenuUrl;
+                                            <div><a href="@url" data-menu="@top.MenuId" data-smenu="@m.MenuId">@m2.MenuName</a></div>
+                                        }
+                                    </dd>
+                                </dl>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="submenu" id="menu-@top.MenuId">
+                    <a href="#"><i class="icon icon-list"></i> <span>@top.MenuName</span> <span class="label">@subMenus.Count()</span></a>
+                    <ul>
+                        @foreach (var m in subMenus)
+                        {
+                            var url = m.MenuUrl.IsNullOrBlank() ? "#" : m.MenuUrl;
+                            <li><a href="@url" data-menu="@top.MenuId">@m.MenuName</a></li>
+                        }
+                    </ul>
+                </li>
+            }
+        }
+</ul>
+
+</div>

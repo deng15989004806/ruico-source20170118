@@ -1,0 +1,186 @@
+﻿@using Ruico.Dto.Common
+@using PagedList.Mvc
+@using Ruico.WebHost
+@model PagedList.IPagedList<Ruico.Dto.Hr.DepartmentDTO>
+@{
+    ViewBag.Title = "部门管理";
+    var name = ViewBag.Name;
+
+    var allList = Model.ToList();
+    var list = new List<Ruico.Dto.Hr.DepartmentDTO>();
+    allList.GetSortedList(ref list, 1, 1);
+    var otherList = allList.Except(list).ToList();
+    if (otherList.Any())
+    {
+        list.AddRange(otherList);
+    }
+}
+
+<div id="content-header">
+    <h1>部门管理</h1>
+</div>
+<div id="breadcrumb">
+    <a href="@Url.Action("Index", "Home", new { area = "" }, null)" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+    <a href="@Url.Action("Index")">部门管理</a>
+
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            @using (Ajax.BeginForm("SearchDepartment", null, new AjaxOptions {HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess"}, new {@class = "form-inline"}))
+            {
+                <section>
+                    <input type="text" name="name" id="name" class="input-medium" placeholder="部门名称" value="@name">
+                    <button type="submit" class="btn btn-primary">查询</button>&nbsp; &nbsp;
+                    <a href="@Url.Action("EditDepartment")" class="btn btn-success" id="addnew">新增部门</a>
+                </section>
+            }
+            <br/>
+        </div>
+
+        <div id="DepartmentContent">
+            <div class="widget-box">
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>部门名称</th>
+                                <th>部门Id</th>
+                                <th>上级部门Id</th>
+                                <th>排序</th>
+                                <th>创建日期</th>
+                                <th>操作</th>
+                                <th>操作日志</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in list)
+                            {
+                                var prex = "";
+                                var depth = item.Depth;
+                                while (depth-- > 1)
+                                {
+                                    prex += "------------>";
+                                }
+                                <tr>
+                                    <td>@Html.Raw(prex) @item.Name</td>
+                                    <td>@item.DepartmentId</td>
+                                    <td>@item.ParentId</td>
+                                    <td>@item.SortOrder</td>
+                                    <td>@item.Created.Display()</td>
+                                    <td>
+                                        <a href="@Url.Action("EditDepartment", new {id = @item.Id})"><i class="icon-edit"></i>编辑</a>
+                                        <a href="@Url.Action("RemoveDepartment", new {id = @item.Id})" class="ajax-remove" data-name="@item.Name"><i class="icon-remove"></i>删除</a>
+                                    </td>
+                                    <td>
+                                        <div class="text-center">
+                                            <a href="javascript:void(0);" class="ajax-popup" data-url="@Url.Action("List", "OperateLog", new {area = "Core/System", sn = @item.Id})" data-title="【部门 @item.Name】操作记录" data-width="800" data-height="400"><i class="icon-list"></i>查看</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="span12">
+            <section>
+                数据同步：&nbsp;
+                <a href="#" class="btn" id="download"><i class="icon-refresh"></i>从微信同步</a>
+                <a href="#" class="btn" id="upload"><i class="icon-refresh"></i>同步到微信</a>
+                <a href="@Url.Action("RemoveNotExistDepartmentInWeixin")" class="ajax-remove btn" data-name="微信上本地不存在的部门"><i class="icon-remove"></i>删除微信上本地不存在的部门</a>
+                <p>注：部门的最大层级为15层。根部门id为1</p>
+            </section>
+        </div>
+    </div>
+
+</div>
+
+    <script>
+  $(function () {
+      $('#menuTab a:first').tab('show');
+      $('#menuTabContent .tab-pane:first').addClass('active');
+
+      $('#menuTab a').click(function(e) {
+          e.preventDefault(); //阻止a链接的跳转行为
+          $(this).tab('show'); //显示当前选中的链接及关联的content
+      });
+
+      $('#download').click(function () {
+          var url = '@Url.Action("GetDepartmentsFromWeixin")' + '?appId=' + $('#appId').val();
+          var downloadUrl = '@Url.Action("DownloadDepartmentsFromWeixin")' + '?appId=' + $('#appId').val();
+          $.ajax({
+              type: "POST",
+              url: url,
+              dataType: "json",
+              success: function (resp) {
+                  if (resp.Succeeded) {
+                      var departments = resp.Data.departments;
+                      var html = [];
+                      html.push('微信上部门预览');
+                      html.push('');
+                      for (var i = 0; i < departments.length; i++) {
+                          var prex = "";
+                          var depth = departments[i].Depth;
+                          while (depth-- > 1) {
+                              prex += "------------>";
+                          }
+                          html.push(prex + departments[i].Name);
+                      }
+                      html.push('');
+                      html.push('只添加本地不存在的部门 或 根据部门Id更新已存在的部门');
+                      html.push('请确认是否将微信上的部门【同步到本地部门】？');
+                      confirm_modal_by_url(downloadUrl, '从微信同步部门', html.join('<br />'), "POST");
+                  } else {
+                      $.gritter.add({
+                          title: '提示',
+                          text: resp.ErrorMessage,
+                          sticky: false
+                      });
+                  }
+              }
+          });
+      });
+
+      $('#upload').click(function () {
+          var url = '@Url.Action("GetDepartmentsFromWeixin")' + '?appId=' + $('#appId').val();
+          var downloadUrl = '@Url.Action("UploadDepartmentsToWeixin")' + '?appId=' + $('#appId').val();
+          $.ajax({
+              type: "POST",
+              url: url,
+              dataType: "json",
+              success: function (resp) {
+                  if (resp.Succeeded) {
+                      var departments = resp.Data.departments;
+                      var html = [];
+                      html.push('微信上部门预览');
+                      html.push('');
+                      for (var i = 0; i < departments.length; i++) {
+                          var prex = "";
+                          var depth = departments[i].Depth;
+                          while (depth-- > 1) {
+                              prex += "------------>";
+                          }
+                          html.push(prex + departments[i].Name);
+                      }
+                      html.push('');
+                      html.push('只添加微信上不存在的部门 或 根据部门Id更新已存在的部门');
+                      html.push('请确认是否将本地部门【同步到微信上】？');
+                      confirm_modal_by_url(downloadUrl, '同步部门到微信', html.join('<br />'), "POST");
+                  } else {
+                      $.gritter.add({
+                          title: '提示',
+                          text: resp.ErrorMessage,
+                          sticky: false
+                      });
+                  }
+              }
+          });
+      });
+  })
+    </script>

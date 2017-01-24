@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messages>
+  <msg name="Name"><![CDATA[名称]]></msg>
+  <msg name="Description"><![CDATA[描述]]></msg>
+  <msg name="SortOrder"><![CDATA[排序]]></msg>
+  <msg name="Sn"><![CDATA[编码]]></msg>
+  <msg name="Code"><![CDATA[代码]]></msg>
+  <msg name="Url"><![CDATA[链接]]></msg>
+
+  <msg name="Name_Empty"><![CDATA[名称不能为空]]></msg>
+  <msg name="Prefix_Empty"><![CDATA[前缀不能为空]]></msg>
+  
+  <msg name="SerialNumberRule_Cargo"><![CDATA[货品编码规则]]></msg>
+  <msg name="SerialNumberRule_Category"><![CDATA[类型编码规则]]></msg>
+  <msg name="SerialNumberRule_Ship"><![CDATA[船舶编码规则]]></msg>
+  <msg name="SerialNumberRule_Company"><![CDATA[公司编码规则]]></msg>
+  <msg name="Category_Cargo"><![CDATA[货品类型]]></msg>
+  <msg name="Category_Company"><![CDATA[公司类型]]></msg>
+</messages>

@@ -1,0 +1,14 @@
+﻿@Html.Partial("_MsgModal")
+
+<p></p>
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">考勤审批</a>
+        <ul class="nav">
+            <li class="@Html.Raw(Request.Url.AbsolutePath.IndexOf("/ChuChai", StringComparison.CurrentCultureIgnoreCase)>-1 ? "active":"")"><a href="@Url.Action("PendingApprove", "ChuChai")">出差</a></li>
+            <li class="@Html.Raw(Request.Url.AbsolutePath.IndexOf("/WaiQin", StringComparison.CurrentCultureIgnoreCase)>-1 ? "active":"")"><a href="@Url.Action("PendingApprove", "WaiQin")">外勤</a></li>
+            <li class="@Html.Raw(Request.Url.AbsolutePath.IndexOf("/XiuJia", StringComparison.CurrentCultureIgnoreCase)>-1 ? "active":"")"><a href="@Url.Action("PendingApprove", "XiuJia")">请假</a></li>
+            <li class="@Html.Raw(Request.Url.AbsolutePath.IndexOf("/WeiDaKa", StringComparison.CurrentCultureIgnoreCase)>-1 ? "active":"")"><a href="@Url.Action("PendingApprove", "WeiDaKa")">未打卡</a></li>
+        </ul>
+    </div>
+</div>

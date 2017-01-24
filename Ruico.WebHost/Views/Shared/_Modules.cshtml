@@ -1,0 +1,18 @@
+﻿@using Ruico.Infrastructure.Utility.Helper
+@model List<Ruico.WebHost.Models.System.ExtModuleDTO>
+@{
+    var currentPath = ViewBag.CurrentPath as string;
+    var currentModuleId = ViewBag.CurrentModuleId as string;
+    var homeModuleClass = currentPath == "/" ? "active" : "";
+}
+<div id="module-list">
+    <ul class="nav nav-pills">
+        <li class="@homeModuleClass"><a href="@Url.Action("Index", "Home", new { area = "" }, null)">我的待办</a></li>
+        @foreach (var m in Model)
+        {
+            var url = m.Url.IsNullOrBlank() ? "#" : m.Url;
+            var moduleClass = @currentModuleId == m.Module.Id.ToString() ? "active" : "";
+            <li class="@moduleClass"><a href="@url">@m.Module.Name</a></li>
+        }
+    </ul>
+</div>

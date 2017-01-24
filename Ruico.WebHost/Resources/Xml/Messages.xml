@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messages>
+  <msg name="Login"><![CDATA[登陆]]></msg>
+  <msg name="Logout"><![CDATA[退出登陆]]></msg>
+  <msg name="Login_Success"><![CDATA[登陆成功]]></msg>
+  <msg name="Logout_Success"><![CDATA[退出登陆成功]]></msg>
+  <msg name="ForceLogout_Success"><![CDATA[你的账号在别处登陆，如需继续使用，请重新登陆]]></msg>
+  <msg name="Add_Success"><![CDATA[新增成功]]></msg>
+  <msg name="Update_Success"><![CDATA[更新成功]]></msg>
+  <msg name="Remove_Success"><![CDATA[删除成功]]></msg>
+  <msg name="Download_Success"><![CDATA[下载成功]]></msg>
+  <msg name="Upload_Success"><![CDATA[上传成功]]></msg>
+  <msg name="Invite_Success"><![CDATA[邀请成功]]></msg>
+  <msg name="Cancel_Success"><![CDATA[取消成功]]></msg>
+  <msg name="Approve_Success"><![CDATA[审批成功]]></msg>
+  <msg name="StartTime_Greater_Than_EndTime"><![CDATA[开始时间不能超过结束时间]]></msg>
+  
+</messages>

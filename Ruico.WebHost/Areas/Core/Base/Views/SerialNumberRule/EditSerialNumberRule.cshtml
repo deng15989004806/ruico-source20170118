@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "编码规则管理";
+    int numberLength = Model.NumberLength;
+}
+@model Ruico.Dto.Base.SerialNumberRuleDTO
+<div id="content-header">
+    <h1>编码规则管理</h1>
+</div>
+<div id="breadcrumb">
+    <a href="@Url.Action("Index", "Home", new { area = "" }, null)" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+    <a href="@Url.Action("Index")">编码规则管理</a>
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon">
+                        <i class="icon-align-justify"></i>
+                    </span>
+                    <h5>添加 / 编辑编码规则</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    @using (Ajax.BeginForm("EditSerialNumberRule", new { id = Model.Id }, new AjaxOptions { HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess" }, new { @class = "form-horizontal" }))
+                    {
+                        <div class="control-group">
+                            <label class="control-label">名称</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.RuleName, new { placeholder = "名称", @class = "input-small"  })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">前缀</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.Prefix, new { placeholder = "前缀", @class = "input-small" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">是否使用日期</label>
+                            <div class="controls">
+                                @Html.CheckBoxFor(x => x.UseDateNumber, new { placeholder = "是否使用日期" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">流水号位数</label>
+                            <div class="controls">
+                                @Html.DropDownListFor(x => x.NumberLength, new List<SelectListItem>()
+                                {
+                                    new SelectListItem(){Text = "1", Value = "1", Selected = numberLength == 1},
+                                    new SelectListItem(){Text = "2", Value = "2", Selected = numberLength == 2},
+                                    new SelectListItem(){Text = "3", Value = "3", Selected = numberLength == 3},
+                                    new SelectListItem(){Text = "4", Value = "4", Selected = numberLength == 4},
+                                }, new { placeholder = "流水号位数", @class = "input-small" })
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

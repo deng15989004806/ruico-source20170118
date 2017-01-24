@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "邀请员工";
+    var allDepartments = ViewBag.AllDepartments as List<DepartmentDTO>;
+    var allMembers = ViewBag.AllMembers as List<MemberDTO>;
+
+    var allDepartmentsInMember = allMembers.OpSafe().SelectMany(x => x.Departments).ToList();
+    var departmentIds = allDepartmentsInMember.Select(x => x.DepartmentId).Distinct();
+}
+@using Ruico.Dto.Hr
+@using PagedList
+@using Ruico.Infrastructure.Utility.Extensions
+<div id="content-header">
+    <h1>邀请员工</h1>
+</div>
+<div id="breadcrumb">
+    <a href="@Url.Action("Index", "Home", new { area = "" }, null)" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+    <a href="@Url.Action("Index")">员工管理</a>
+    <a class="current">邀请员工</a>
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon">
+                        <i class="icon-align-justify"></i>
+                    </span>
+                    <h5>邀请员工</h5>
+                    <div class="pull-right" style="padding:8px 15px;"><label>@Html.CheckBox("chkAll", new { value = "", @class = "chkAll", depth = "4" })全选(未关注)</label></div>
+                </div>
+                <div class="widget-content">
+                    @using (Ajax.BeginForm("InviteMember", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess" }, new { @class = "form-horizontal" }))
+                    {
+                        foreach (var depId in departmentIds)
+                        {
+                            var dep = allDepartmentsInMember.First(x => x.DepartmentId == depId);
+                            var depName = dep.Name;
+                            var parentId = dep.ParentId;
+                            while(parentId != 1)
+                            {
+                                var tempDep = allDepartments.OpSafe().FirstOrDefault(x => x.DepartmentId == parentId);
+                                if (tempDep != null)
+                                {
+                                    parentId = tempDep.ParentId;
+                                    depName = tempDep.Name + "------------>" + depName;
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            var members = allMembers.OpSafe().Where(x => x.Departments.Exists(d => d.DepartmentId == depId)).ToList();
+
+                            <hr />
+                            <div>
+                                <h4>@depName<label class="pull-right">@Html.CheckBox("chkAll", new { value = "", @class = "chkAll", depth = "3" })全选(未关注)</label></h4>
+                                <div class="control-group">
+                                    <label class="control-label">
+                                    </label>
+                                    <div class="controls">
+                                        @{
+                                            var pageIndex = 1;
+                                            const int pageSize = 5;
+                                            StaticPagedList<MemberDTO> subList;
+                                            do
+                                            {
+                                                subList = new StaticPagedList<MemberDTO>
+                                                    (members.Skip((pageIndex - 1)*pageSize).Take(pageSize), pageIndex++, pageSize, members.Count);
+                                                <div class="clearfix">
+                                                    @foreach (var p in subList)
+                                                    {
+                                                        var cssStyle = string.Empty;
+                                                        var disabled = string.Empty;
+                                                        if (p.Status == 1)
+                                                        {
+                                                            disabled = "disabled";
+                                                            cssStyle = "color:green;";
+                                                        }
+                                                        else if (p.Status == 2)
+                                                        {
+                                                            disabled = "disabled";
+                                                            cssStyle = "color:red;";
+                                                        }
+
+                                                        <div class="span2">
+                                                            <label title="@p.Userid">
+                                                                @if (string.IsNullOrWhiteSpace(disabled))
+                                                                {
+                                                                    @Html.CheckBox("userIds", false, new { value = p.Userid })
+                                                                }
+                                                                else
+                                                                {
+                                                                    @Html.CheckBox("userIds", false, new { value = p.Userid, disabled = disabled })
+                                                                }
+                                                                <span style="@cssStyle">@p.Name</span>
+                                                            </label>
+                                                        </div>
+                                                    }
+                                                </div>
+
+                                            } while (subList.HasNextPage);
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">邀请</button>
+                        </div>
+
+                        <div>
+                            <p>说明：<span style="color: green;">已关注</span>&nbsp;<span style="color: red;">已冻结</span>&nbsp;<span>未关注</span></p>
+                            <p>只有未关注可以进行邀请</p>
+                            <p>
+                                认证号优先使用微信推送邀请关注，如果没有weixinid字段则依次对手机号，邮箱绑定的微信进行推送，全部没有匹配则通过邮件邀请关注。 邮箱字段无效则邀请失败。 非认证号只通过邮件邀请关注。邮箱字段无效则邀请失败。 已关注以及被禁用成员不允许发起邀请关注请求。
+                            </p>
+                            <p>
+                                为避免骚扰成员，企业应遵守以下邀请规则：
+                            </p>
+                            <p>
+                                每月邀请的总人次不超过成员上限的2倍；每7天对同一个成员只能邀请一次。
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+﻿@using PagedList
+@using Ruico.Dto.Common
+@using Ruico.Dto.Hr
+@using Ruico.WebHost
+@model Ruico.Dto.Hr.MemberDTO
+@{
+    ViewBag.Title = "员工部门管理";
+    var allList = ViewBag.AllDepartments as IPagedList<DepartmentDTO>;
+
+    var list = new List<Ruico.Dto.Hr.DepartmentDTO>();
+    if (allList != null)
+    {
+        allList.ToList().GetSortedList(ref list, 1, 1);
+        var otherList = allList.Except(list).ToList();
+        if (otherList.Any())
+        {
+            list.AddRange(otherList);
+        }
+    }
+    foreach (var item in list)
+    {
+        var prex = "";
+        var depth = item.Depth;
+        while (depth-- > 1)
+        {
+            prex += "------------>";
+        }
+        item.Name = prex + item.Name;
+    }
+    var allDepartments = list;
+    var existsDepartments = Model.Departments.Select(x=>new IdNameDTO() { Id = x.Id, Name = x.Name }).ToList();
+}
+
+<div id="content-header">
+    <h1>员工 > 部门</h1>
+</div>
+<div id="breadcrumb">
+    <a href="@Url.Action("Index", "Home", new { area = "" }, null)" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+    <a href="@Url.Action("Index")">员工管理</a>
+    <a class="current">部门</a>
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-content">
+                    @using (Ajax.BeginForm("EditDepartmentList", new { memberId = Model.Id }, new AjaxOptions { HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess" }, new { @class = "form-horizontal" }))
+                    {
+                        <select multiple="multiple" size="10" name="Departments" id="listbox">
+                            @foreach (var department in allDepartments)
+                            {
+                                if (existsDepartments.FirstOrDefault(x => x.Id == department.Id) != null)
+                                {
+                                    <option value="@department.Id" selected="selected">@department.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@department.Id">@department.Name</option>
+                                }
+                            }
+                        </select>
+                        <div class="form-actions text-center">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    }
+                    <script>
+                        $(function () {
+                            $('#listbox').bootstrapDualListbox({
+                                nonSelectedListLabel: '未选择',
+                                selectedListLabel: '已选择',
+                                preserveSelectionOnMove: '已移动',
+                                filterTextClear: '显示全部',
+                                filterPlaceHolder: '筛选',
+                                moveSelectedLabel: '添加已选',
+                                moveAllLabel: '添加全部',
+                                removeSelectedLabel: '移除已选',
+                                removeAllLabel: '移除全部',
+                                infoText: '显示全部{0}条',
+                                infoTextFiltered: '<span class="label label-warning">已过滤</span>{0}条 共{1}条',
+                                infoTextEmpty: '空列表',
+                                moveOnSelect: false,
+                                nonSelectedFilter: '',
+                                bootstrap2Compatible: true
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

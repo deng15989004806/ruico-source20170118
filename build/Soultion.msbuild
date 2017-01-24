@@ -1,0 +1,43 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Build">
+
+  <PropertyGroup>      
+    <DeployPrefix>Ruico.WebHost</DeployPrefix> 
+    <DeployFolder>D:\Developer\WebSite\Ruico\</DeployFolder>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <BuildPlatform Condition=" '$(BuildPlatform)' == '' ">Any CPU</BuildPlatform>
+    <ProjectDir>..\</ProjectDir >
+  </PropertyGroup>
+  
+  <Target Name="Clean">
+    <!--Lets delete the old deployed files-->
+    <RemoveDir Directories="$(DeployFolder)" />
+  </Target>
+
+  <Target Name="Build">
+    <MakeDir Directories="$(DeployFolder)" />
+    <MakeDir Directories="$(DeployFolder)\$(DeployPrefix)" />
+
+    <!--Lets Copy \Web.config To \Web.config.bak -->
+    <Copy Condition="Exists('$(DeployFolder)\$(DeployPrefix)\Web.config')"
+          SourceFiles="$(DeployFolder)\$(DeployPrefix)\Web.config"
+             DestinationFiles="$(DeployFolder)\$(DeployPrefix)\Web.config.bak"
+SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
+
+    <!--Lets publish Ruico.Presentation.WebHost-->
+    <MSBuild Projects="$(ProjectDir)Ruico.WebHost\Ruico.WebHost.csproj"
+       Properties="WebProjectOutputDir=$(DeployFolder)\$(DeployPrefix)\;
+           OutDir=$(DeployFolder)\$(DeployPrefix)\bin\;
+	   Configuration=$(Configuration);" />
+	   
+    <!--Lets Copy \Web.config.bak To \Web.config -->
+    <Copy Condition="Exists('$(DeployFolder)\$(DeployPrefix)\Web.config.bak')"
+          SourceFiles="$(DeployFolder)\$(DeployPrefix)\Web.config.bak"
+             DestinationFiles="$(DeployFolder)\$(DeployPrefix)\Web.config"
+SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
+    
+    <!--Lets delete the Web.config.bak file-->
+    <Delete Condition="Exists('$(DeployFolder)\$(DeployPrefix)\Web.config.bak')" 
+            Files="$(DeployFolder)\$(DeployPrefix)\Web.config.bak"/>
+  </Target>
+</Project>

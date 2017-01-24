@@ -1,0 +1,69 @@
+﻿@using PagedList.Mvc
+@using Ruico.Dto.KaoQin
+@model PagedList.IPagedList<Ruico.Dto.KaoQin.XiuJiaDTO>
+@{
+    ViewBag.Title = "Ruico-考勤系统";
+    //ViewBag.Title = "外出申请记录";
+}
+
+@Html.Partial("_NavApprove")
+
+<div class="row-fluid">
+    <div class="span12">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+
+                    <ul class="nav nav-pills">
+                        <li class="active">
+                            <a href="@Url.Action("PendingApprove")">待审批</a>
+                        </li>
+                        <li><a href="@Url.Action("Approved")">已审批</a></li>
+                    </ul>
+
+                    @if (Model.Count == 0)
+                    {
+                        <div class="well">
+                            <p>没有相关的记录</p>
+                        </div>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            KaoQinStatusDTO status;
+                            Enum.TryParse(item.Status, true, out status);
+
+                            <div class="well">
+                                <h4>提交时间：@item.Created.DisplayDateHourMinute()</h4>
+                                <p>请假类别：@item.Type</p>
+                                <p>请假事由：@item.Reason</p>
+                                <p>开始时间：@item.ActionStartTime.DisplayDateHourMinuteWeekDay()</p>
+                                <p>结束时间：@item.ActionEndTime.DisplayDateHourMinuteWeekDay()</p>
+                                <p>共计：@item.ActionDays 天 @item.ActionHours 时</p>
+                                <p>
+                                    状态：@Html.Raw(status.DisplayStatusText())
+                                </p>
+                                <p>
+                                    <a href="@Url.Action("Approve", new {id = @item.Id})">审批</a>
+                                </p>
+                            </div>
+                        }
+
+                        <div class="pagination">
+                            @Html.PagedListPager(
+                                Model,
+                                page => Url.Action(
+                                    "Index",
+                                    new RouteValueDictionary(new
+                                    {
+                                        page,
+                                    })),
+                                CustomDisplayExtensions.PagedListRenderOptions)
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@using Ruico.Infrastructure.Authorize.AuthObject
+@{
+    var user = ViewBag.CurrentUser as UserForAuthorize;
+    var loginName = user == null ? string.Empty : user.LoginName;
+    var dateString = DateTime.Now.ToString("yyyy年MM月dd日");
+    var jsMessage = ViewBag.JsMessage ?? string.Empty;
+}
+
+<div id="header">
+    <h1>Ruico System</h1>
+</div>
+
+<div id="search">
+</div>
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav btn-group">
+        <li class="btn btn-inverse"><a href=""><span>欢迎你@(loginName)！今天是@(dateString)</span></a></li>
+        <li class="btn btn-inverse"><a title="" href="@Url.Action("WhatCanIdo", "Home", new { area = "" })"><i class="icon icon-lock"></i> <span class="text">我的权限</span></a></li>
+        <li class="btn btn-inverse"><a title="" href="@Url.Action("Index", "Home", new { area = "" })"> <span class="text">回到首页</span></a></li>
+        @if (user == null)
+        {
+            <li class="btn btn-inverse"><a title="" href="@Url.Action("Account", "Login", new { area = "" })"><i class="icon icon-user"></i> <span class="text">登陆</span></a></li>
+        }
+        else
+        {
+            <li class="btn btn-inverse"><a title="" href="@Url.Action("Logout","Account", new { area = ""})"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+
+        }
+    </ul>
+</div>
+
+<script>
+    var jsMessage = '@jsMessage';
+</script>

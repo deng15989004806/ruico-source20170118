@@ -1,0 +1,61 @@
+﻿@model Ruico.Dto.KaoQin.ChuChaiDTO
+@{
+    ViewBag.Title = "Ruico-考勤系统";
+}
+
+@Html.Partial("_NavApprove")
+
+<div class="row-fluid">
+    <div class="span12">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+
+                    <ul class="nav nav-pills">
+                        <li class="active">
+                            <a href="@Url.Action("PendingApprove")">待审批</a>
+                        </li>
+                        <li><a href="@Url.Action("Approved")">已审批</a></li>
+                    </ul>
+                    @using (Ajax.BeginForm("Approve", new { Id = Model.Id }, new AjaxOptions { HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess" }, new { @class = "well", id = "form1" }))
+                    {
+                        <div class="control-group">
+                            <label class="control-label">部门意见</label>
+                            <div class="controls">
+                                <textarea rows="3" name="DepartmentOpinion" placeholder="部门意见">@Model.DepartmentOpinion</textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">总经办意见</label>
+                            <div class="controls">
+                                <textarea rows="3" name="GeneralManagerOfficeOpinion" placeholder="总经办意见">@Model.GeneralManagerOfficeOpinion</textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">公司领导意见</label>
+                            <div class="controls">
+                                <textarea rows="3" name="CompanyLeaderOpinion" placeholder="公司领导意见">@Model.CompanyLeaderOpinion</textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary">提交审批</button>
+                            </div>
+                        </div>
+                    }
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#form1').submit(function () {
+            ajaxForm(this);
+            return false;
+        });
+    });
+</script>
+

@@ -1,0 +1,82 @@
+﻿@using PagedList.Mvc
+@using Ruico.WebHost
+@model PagedList.IPagedList<Ruico.Dto.Base.SerialNumberRuleDTO>
+    @{
+        ViewBag.Title = "编码规则管理";
+        var name = ViewBag.Name;
+    }
+
+
+    <div id="content-header">
+        <h1>编码规则管理</h1>
+    </div>
+    <div id="breadcrumb">
+        <a href="@Url.Action("Index", "Home", new { area = "" }, null)" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+        <a href="@Url.Action("Index")">编码规则管理</a>
+
+    </div>
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+            <div class="span12">
+                @using (Ajax.BeginForm("SearchSerialNumberRule", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess" }, new { @class = "form-inline" }))
+                {
+                    <section>
+                        <input type="text" name="name" id="name" class="input-medium" placeholder="编码规则名称" value="@name">&nbsp; &nbsp;
+                        <button type="submit" class="btn btn-primary">查询</button>&nbsp; &nbsp;
+                        <a href="@Url.Action("EditSerialNumberRule")" class="btn btn-success" id="addnew">新增编码规则</a>
+                    </section>
+                }
+                <div class="widget-box">
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>编码规则名称</th>
+                                    <th>前缀</th>
+                                    <th>是否使用日期</th>
+                                    <th>流水号位数</th>
+                                    <th>创建日期</th>
+                                    <th>操作</th>
+                                    <th>操作日志</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.RuleName</td>
+                                        <td>@item.Prefix</td>
+                                        <td>@Html.Raw(@item.UseDateNumber? "是" : "否")</td>
+                                        <td>@item.NumberLength</td>
+                                        <td>@item.Created.Display()</td>
+                                        <td>
+                                            <a href="@Url.Action("EditSerialNumberRule", new { id = @item.Id })"><i class="icon-edit"></i>编辑</a>
+                                            <a href="@Url.Action("RemoveSerialNumberRule", new { id = @item.Id })" class="ajax-remove" data-name="@item.RuleName"><i class="icon-remove"></i>删除</a>
+                                        </td>
+                                        <td>
+                                            <div class="text-center">
+                                                <a href="javascript:void(0);" class="ajax-popup" data-url="@Url.Action("List", "OperateLog", new { area = "Core/System", sn = @item.Id })" data-title="【编码规则 @item.RuleName】操作记录" data-width="800" data-height="400"><i class="icon-list"></i>查看</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="pagination pagination-right">
+                    @Html.PagedListPager(
+                        Model,
+                        page => Url.Action(
+                            "Index",
+                            new RouteValueDictionary(new
+                            {
+                                page,
+                                name
+                            })),
+                            CustomDisplayExtensions.PagedListRenderOptions)
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,73 @@
+﻿@using Ruico.Domain.Weixin.Model
+@{
+    ViewBag.Title = "Ruico-考勤系统";
+    //ViewBag.Title = "未打卡申请";
+    //var member = ViewBag.Member as Member;
+    //var department = ViewBag.Department as Department;
+    var dateTime = DateTime.Today;
+    var dateTimeNowStr = dateTime.ToString("yyyy-MM-dd");
+
+    var types = new[] {"上午上班", "上午下班", "下午上班", "下午下班", "全天"};
+}
+
+@Html.Partial("_NavApply")
+
+<div class="row-fluid">
+    <div class="span12">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+
+                    <ul class="nav nav-pills">
+                        <li class="active">
+                            <a href="@Url.Action("Apply")">添加申请</a>
+                        </li>
+                        <li><a href="@Url.Action("Index")">历史记录</a></li>
+                    </ul>
+                    @using (Ajax.BeginForm("Apply", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess" }, new { @class = "well", id="form1" }))
+                    {
+                        <div class="control-group">
+                            <label class="control-label">未打卡时间</label>
+                            <div class="controls">
+                                <input type="text" name="ActionTime" value="@dateTimeNowStr" class="input-medium datetimepicker">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">未打卡类型</label>
+                            <div class="controls">
+                                @Html.DropDownList("Type", types.Select(x => new SelectListItem() { Text = x, Value = x }))
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">未打卡原因</label>
+                            <div class="controls">
+                                <textarea rows="3" name="Reason" placeholder="未打卡原因"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary">提交申请</button>
+                            </div>
+                        </div>
+                    }
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        //$('.datetimepicker').datetimepicker({
+        //    format: 'yyyy-mm-dd',
+        //    language: 'zh-CN'
+        //});
+
+        $('#form1').submit(function () {
+            ajaxForm(this);
+            return false;
+        });
+    });
+</script>
+

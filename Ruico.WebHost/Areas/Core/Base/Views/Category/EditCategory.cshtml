@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "类型管理";
+}
+@model Ruico.Dto.Base.CategoryDTO
+<div id="content-header">
+    <h1>类型管理</h1>
+</div>
+<div id="breadcrumb">
+    <a href="@Url.Action("Index", "Home", new { area = "" }, null)" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+    <a href="@Url.Action("Index")">类型管理</a>
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon">
+                        <i class="icon-align-justify"></i>
+                    </span>
+                    <h5>添加 / 编辑类型</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    @using (Ajax.BeginForm("EditCategory", new { id = Model.Id }, new AjaxOptions { HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess" }, new { @class = "form-horizontal" }))
+                    {
+                        <div class="control-group">
+                            <label class="control-label">名称</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.Name, new { placeholder = "名称", @class = "input-small"  })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">排序</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.SortOrder, new { placeholder = "排序" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">子类型编码前缀</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.ChildSnRulePrefix, new { placeholder = "子类型编码前缀" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">子类型编码流水号位数</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.ChildSnRuleNumberLength, new { placeholder = "子类型编码流水号位数" })
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

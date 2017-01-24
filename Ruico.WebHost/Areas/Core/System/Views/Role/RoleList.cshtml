@@ -1,0 +1,91 @@
+﻿@using PagedList.Mvc
+@using Ruico.WebHost
+@model PagedList.IPagedList<Ruico.Dto.UserSystem.RoleDTO>
+@{
+    ViewBag.Title = "角色管理";
+    var name = ViewBag.Name;
+    var groupName = ViewBag.GroupName;
+    var groupId = ViewBag.GroupId;
+}
+
+<div id="content-header">
+    <h1>角色组 > 角色</h1>
+</div>
+<div id="breadcrumb">
+    <a href="@Url.Action("Index", "Home", new { area = "" }, null)" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+    <a href="@Url.Action("Index")">角色管理</a>
+    <a href="@Url.Action("RoleList", new { groupId = @groupId })">@groupName 角色组</a>
+    <a class="current">角色</a>
+</div>
+<div class="container-fluid">
+
+
+    <div class="row-fluid">
+        <div class="span12">
+            @using (Ajax.BeginForm("SearchRoleList", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess" }, new { @class = "form-inline" }))
+            {
+                <section>
+                    <input type="text" name="name" id="name" class="input-medium" placeholder="角色名称" value="@name">&nbsp; &nbsp;
+                    <input type="hidden" name="groupId" value="@groupId"/>
+                    <button type="submit" class="btn btn-primary">查询</button>&nbsp; &nbsp;
+                    <a href="@Url.Action("EditRole", new { groupId = @groupId })" class="btn btn-success" id="addnew">新增角色</a>
+                </section>
+            }
+            <div class="widget-box">
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th width="10%">角色名称</th>
+                                <th width="42%">描述</th>
+                                <th width="5%">排序</th>
+                                <th width="15%">添加时间</th>
+                                <th width="20%">操作</th>
+                                <th width="8%">操作日志</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.SortOrder</td>
+                                    <td>@item.Created.Display()</td>
+                                    <td>
+                                        <a href="@Url.Action("EditRolePermission", new { roleId = @item.Id })"><i class="icon-list"></i>权限</a>
+                                        <a href="@Url.Action("EditRole", new { groupId = @groupId, id = @item.Id })"><i class="icon-edit"></i>编辑</a>
+                                        <a href="@Url.Action("RemoveRole", new { groupId = @groupId, id = @item.Id })" class="ajax-remove" data-name="@item.Name"><i class="icon-remove"></i>删除</a>
+                                    </td>
+                                    <td>
+                                        <div class="text-center">
+                                            <a href="javascript:void(0);" class="ajax-popup" data-url="@Url.Action("List", "OperateLog", new { sn = @item.Id })" data-title="【角色 @item.Name】操作记录" data-width="800" data-height="400"><i class="icon-list"></i>查看</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="pagination pagination-right">
+                @Html.PagedListPager(
+                    Model,
+                    page => Url.Action(
+                        "Index",
+                        new RouteValueDictionary(new
+                        {
+                            page,
+                            groupId,
+                            name
+                        })),
+                    CustomDisplayExtensions.PagedListRenderOptions
+                    )
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

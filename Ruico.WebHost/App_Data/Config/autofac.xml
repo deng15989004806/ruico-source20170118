@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<autofac>
+  <components>
+    <!-- ... -->
+    <!--<component type="Ruico.Infrastructure.Authorize.AuthorizeFilterAttribute, Ruico.Infrastructure.Authorize"
+               inject-properties="yes">
+    </component>-->
+  </components>
+  <modules>
+    <!-- ... -->
+  </modules>
+</autofac>

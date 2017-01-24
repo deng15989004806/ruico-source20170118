@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messages>
+  
+  <msg name="Canceled_CanNot_Approved"><![CDATA[已取消状态，不能审批]]></msg>
+  <msg name="Approved_CanNot_Canceled"><![CDATA[已审批状态，不能取消]]></msg>
+  <msg name="UserId_Empty"><![CDATA[员工编号不能为空]]></msg>
+  <msg name="UserName_Empty"><![CDATA[姓名不能为空]]></msg>
+  <msg name="DepartmentId_Empty"><![CDATA[部门不能为空]]></msg>
+  <msg name="Position_Empty"><![CDATA[职位不能为空]]></msg>
+  <msg name="Approve_Opinion_Empty"><![CDATA[审批意见不能为空]]></msg>
+
+  <msg name="Add_ChuChai"><![CDATA[添加出差记录]]></msg>
+  <msg name="Update_ChuChai"><![CDATA[更新出差记录]]></msg>
+  <msg name="Remove_ChuChai"><![CDATA[删除出差记录]]></msg>
+  <msg name="ChuChai_Exists_WithValue"><![CDATA[出差记录已存在，员工编号'{0}'，出差时间'{1}']]></msg>
+  <msg name="ChuChai_NotExists"><![CDATA[出差记录不存在]]></msg>
+  <msg name="ChuChai_OutPlace_Empty"><![CDATA[出差地点不能为空]]></msg>
+  <msg name="ChuChai_OutReason_Empty"><![CDATA[出差事由不能为空]]></msg>
+  <msg name="ChuChai_OutTime_Greater_Than_InTime"><![CDATA[出差时间不能大于返回时间]]></msg>
+
+
+  <msg name="Add_WaiQin"><![CDATA[添加外出记录]]></msg>
+  <msg name="Update_WaiQin"><![CDATA[更新外出记录]]></msg>
+  <msg name="Remove_WaiQin"><![CDATA[删除外出记录]]></msg>
+  <msg name="WaiQin_Exists_WithValue"><![CDATA[外出记录已存在，员工编号'{0}'，外出时间'{1}']]></msg>
+  <msg name="WaiQin_NotExists"><![CDATA[外出记录不存在]]></msg>
+  <msg name="WaiQin_OutPlace_Empty"><![CDATA[外出地点不能为空]]></msg>
+  <msg name="WaiQin_OutReason_Empty"><![CDATA[外出事由不能为空]]></msg>
+  <msg name="WaiQin_OutTime_Greater_Than_InTime"><![CDATA[外出时间不能大于返回时间]]></msg>
+  
+
+  <msg name="Add_WeiDaKa"><![CDATA[添加未打卡记录]]></msg>
+  <msg name="Update_WeiDaKa"><![CDATA[更新未打卡记录]]></msg>
+  <msg name="Remove_WeiDaKa"><![CDATA[删除未打卡记录]]></msg>
+  <msg name="WeiDaKa_Exists_WithValue"><![CDATA[未打卡记录已存在，员工编号'{0}'，未打卡时间'{1}'，未打卡类型'{2}']]></msg>
+  <msg name="WeiDaKa_NotExists"><![CDATA[未打卡记录不存在]]></msg>
+  <msg name="WeiDaKa_Reason_Empty"><![CDATA[未打卡原因不能为空]]></msg>
+  <msg name="WeiDaKa_Type_Empty"><![CDATA[未打卡类型不能为空]]></msg>
+
+  
+  <msg name="Add_XiuJia"><![CDATA[添加休假记录]]></msg>
+  <msg name="Update_XiuJia"><![CDATA[更新休假记录]]></msg>
+  <msg name="Remove_XiuJia"><![CDATA[删除休假记录]]></msg>
+  <msg name="XiuJia_Exists_WithValue"><![CDATA[休假记录已存在，员工编号'{0}'，休假开始时间'{1}']]></msg>
+  <msg name="XiuJia_NotExists"><![CDATA[休假记录不存在]]></msg>
+  <msg name="XiuJia_StartTime_Greater_Than_EndTime"><![CDATA[开始时间不能大于结束时间]]></msg>
+  <msg name="XiuJia_Reason_Empty"><![CDATA[请假事由不能为空]]></msg>
+  <msg name="XiuJia_Type_Empty"><![CDATA[请假类别不能为空]]></msg>
+  <msg name="XiuJia_Days_Hours_Empty"><![CDATA[天数和小时数不能同时为空]]></msg>
+
+</messages>

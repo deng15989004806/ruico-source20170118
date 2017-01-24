@@ -1,0 +1,38 @@
+﻿<div id="sidebar">
+    <a href="#" class="visible-phone"><i class="icon icon-home"></i> 首页</a>
+    <ul>
+        <li class="submenu" data-menu="UserSystem">
+            <a href="#"><i class="icon icon-th-list"></i> <span>系统管理</span> <span class="label">4</span></a>
+            <ul>
+                <li><a href="@Url.Action("Index", "Module", new { area = "Core/System" }, null)">模块管理</a></li>
+                <li><a href="@Url.Action("Index", "Role", new { area = "Core/System" }, null)">角色管理</a></li>
+                <li><a href="@Url.Action("Index", "User", new { area = "Core/System" }, null)">用户管理</a></li>
+                <li><a href="@Url.Action("Index", "Menu", new { area = "Core/System" }, null)">菜单管理</a></li>
+            </ul>
+        </li>
+        <li class="submenu" data-menu="other1">
+            <a href="#"><i class="icon icon-th-list"></i> <span>商务</span> <span class="label">4</span></a>
+            <ul>
+                <li>
+                    <dl>
+                        <dt><a href="#"><i class="icon icon-plus"></i> <span>功能模块</span> <span class="label">2</span></a></dt>
+                        <dd>
+                            <div><a href="#">菜单管理</a></div>
+                            <div><a href="#">菜单管理</a></div>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><a href="#"><i class="icon icon-plus"></i> <span>报表模块</span> <span class="label">2</span></a></dt>
+                        <dd>
+                            <div><a href="#">菜单管理</a></div>
+                            <div><a href="#">菜单管理</a></div>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </li>
+</ul>
+
+</div>

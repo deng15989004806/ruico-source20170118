@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0EBEE871-D469-48E7-9DC2-228A84B2B1FB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ruico.Application</RootNamespace>
+    <AssemblyName>Ruico.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseModule\ICargoService.cs" />
+    <Compile Include="BaseModule\ICategoryService.cs" />
+    <Compile Include="BaseModule\ICompanyService.cs" />
+    <Compile Include="BaseModule\Imp\CompanyService.cs" />
+    <Compile Include="BaseModule\Imp\ShipService.cs" />
+    <Compile Include="BaseModule\Imp\CargoService.cs" />
+    <Compile Include="BaseModule\Imp\CategoryService.cs" />
+    <Compile Include="BaseModule\Imp\SerialNumberRuleQuerier.cs" />
+    <Compile Include="BaseModule\ISerialNumberRuleService.cs" />
+    <Compile Include="BaseModule\IShipService.cs" />
+    <Compile Include="Exceptions\ArgumentEmptyException.cs" />
+    <Compile Include="Exceptions\DataExistsException.cs" />
+    <Compile Include="Exceptions\DataNotFoundException.cs" />
+    <Compile Include="Exceptions\DefinedException.cs" />
+    <Compile Include="Extensions\KaoQinOperationLogExtension.cs" />
+    <Compile Include="Extensions\HrOperationLogExtension.cs" />
+    <Compile Include="Extensions\WeixinOperationLogExtension.cs" />
+    <Compile Include="Extensions\BaseOperationLogExtension.cs" />
+    <Compile Include="BaseModule\Imp\SerialNumberRuleService.cs" />
+    <Compile Include="HrModule\IDepartmentService.cs" />
+    <Compile Include="HrModule\IMemberService.cs" />
+    <Compile Include="HrModule\Imp\MemberService.cs" />
+    <Compile Include="HrModule\Imp\DepartmentService.cs" />
+    <Compile Include="KaoQinModule\Imp\XiuJiaService.cs" />
+    <Compile Include="KaoQinModule\IXiuJiaService.cs" />
+    <Compile Include="KaoQinModule\Imp\WeiDaKaService.cs" />
+    <Compile Include="KaoQinModule\IWeiDaKaService.cs" />
+    <Compile Include="KaoQinModule\Imp\WaiQinService.cs" />
+    <Compile Include="KaoQinModule\IWaiQinService.cs" />
+    <Compile Include="KaoQinModule\IChuChaiService.cs" />
+    <Compile Include="KaoQinModule\Imp\ChuChaiService.cs" />
+    <Compile Include="Resources\Generated\BaseMessagesResources.Designer.cs">
+      <DependentUpon>BaseMessagesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Generated\CommonMessageResources.Designer.cs">
+      <DependentUpon>CommonMessageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Generated\HrMessagesResources.Designer.cs">
+      <DependentUpon>HrMessagesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Generated\KaoQinMessagesResources.Designer.cs">
+      <DependentUpon>KaoQinMessagesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Generated\UserSystemMessagesResources.Designer.cs">
+      <DependentUpon>UserSystemMessagesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Generated\WeixinMessagesResources.Designer.cs">
+      <DependentUpon>WeixinMessagesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemModule\Imp\OperateLogService.cs" />
+    <Compile Include="SystemModule\Imp\OperateRecorder.cs" />
+    <Compile Include="SystemModule\Imp\OperateRecorder`Async.cs" />
+    <Compile Include="SystemModule\Imp\OperateRecordService.cs" />
+    <Compile Include="Extensions\UserSystemOperationLogExtension.cs" />
+    <Compile Include="SystemModule\Imp\SerialNumberGenerator.cs" />
+    <Compile Include="SystemModule\Imp\SerialNumberService.cs" />
+    <Compile Include="SystemModule\IOperateLogService.cs" />
+    <Compile Include="SystemModule\IOperateRecordService.cs" />
+    <Compile Include="SystemModule\ISerialNumberService.cs" />
+    <Compile Include="SystemModule\IServiceResolver.cs" />
+    <Compile Include="UserSystemModule\IAuthService.cs" />
+    <Compile Include="UserSystemModule\IMenuService.cs" />
+    <Compile Include="UserSystemModule\IModuleService.cs" />
+    <Compile Include="UserSystemModule\Imp\ModuleService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserSystemModule\Imp\AuthService.cs" />
+    <Compile Include="UserSystemModule\Imp\MenuService.cs" />
+    <Compile Include="UserSystemModule\Imp\RoleGroupService.cs" />
+    <Compile Include="UserSystemModule\Imp\RoleService.cs" />
+    <Compile Include="UserSystemModule\Imp\UserService.cs" />
+    <Compile Include="UserSystemModule\IRoleGroupService.cs" />
+    <Compile Include="UserSystemModule\IRoleService.cs" />
+    <Compile Include="UserSystemModule\IUserService.cs" />
+    <Compile Include="WeixinModule\IAppMenuService.cs" />
+    <Compile Include="WeixinModule\Imp\AppMenuService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ruico.Domain\Ruico.Domain.csproj">
+      <Project>{7d0ea711-7474-4a99-b97c-627f7db2e8ac}</Project>
+      <Name>Ruico.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ruico.Dto\Ruico.Dto.csproj">
+      <Project>{f0ec9567-c6ce-4c84-b752-e0f3210c5500}</Project>
+      <Name>Ruico.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ruico.Infrastructure.Authorize\Ruico.Infrastructure.Authorize.csproj">
+      <Project>{44487f6e-c066-4f62-85e4-0c2fe4a10eb5}</Project>
+      <Name>Ruico.Infrastructure.Authorize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ruico.Infrastructure.Utility\Ruico.Infrastructure.Utility.csproj">
+      <Project>{f4f08667-3fc3-4b94-8caa-a66289270c21}</Project>
+      <Name>Ruico.Infrastructure.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ruico.Infrastructure\Ruico.Infrastructure.csproj">
+      <Project>{cefb2502-74e9-4688-8b9e-dff48de1cc6a}</Project>
+      <Name>Ruico.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Xml\KaoQinMessages.xml" />
+    <Content Include="Resources\Xml\HrMessages.xml" />
+    <Content Include="Resources\Xml\WeixinMessages.xml" />
+    <Content Include="Resources\Xml\CommonMessage.xml" />
+    <Content Include="Resources\Xml\BaseMessages.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Resources\Xml\UserSystemMessages.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Resources\ResourcesGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ResourcesGenerator.txt</LastGenOutput>
+    </None>
+    <Content Include="Resources\ResourcesMultipleOutputHelper.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ResourcesGenerator.txt">
+      <DependentUpon>ResourcesGenerator.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Generated\BaseMessagesResources.resx" />
+    <EmbeddedResource Include="Resources\Generated\CommonMessageResources.resx" />
+    <EmbeddedResource Include="Resources\Generated\HrMessagesResources.resx" />
+    <EmbeddedResource Include="Resources\Generated\KaoQinMessagesResources.resx" />
+    <EmbeddedResource Include="Resources\Generated\UserSystemMessagesResources.resx" />
+    <EmbeddedResource Include="Resources\Generated\WeixinMessagesResources.resx" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。启用“NuGet 程序包还原”可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

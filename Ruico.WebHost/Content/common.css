@@ -1,0 +1,136 @@
+﻿
+/* ===============表格行变色================ */
+.table-bordered {
+  border-color:#e5eff6;
+}
+
+.table-striped tbody > tr:nth-child(2n+1) > td, 
+.table-striped tbody > tr:nth-child(2n+1) > th {
+  background:#fcfcfc;
+}
+
+.table-striped tbody tr:hover td, 
+.table-striped tbody tr:hover th {
+  background:#f5fafd;
+}
+
+/* ===============表格链接颜色================ */
+.table-striped a {
+  color: #333333;  
+  font-size: 11px;
+}
+
+.table-striped a:hover {
+  color: #666666;
+}
+
+.ajax-remove {
+    
+}
+
+/* 支持两级子菜单 */
+#sidebar dl, #sidebar dt, #sidebar dd {
+    margin: 0;
+}
+
+#sidebar > ul > li > ul > li > dl > dt {
+    line-height: 20px;
+}
+
+#sidebar > ul > li > ul > li > dl > dt > a {
+	padding: 10px 0 10px 15px;
+	display: block;
+	color: #AAAAAA;
+}
+
+#sidebar > ul > li > ul > li > dl > dt > a > i {
+	margin-right: 10px;
+}
+
+#sidebar > ul > li > ul > li > dl > dt > a > .label {
+	background-color: #333333;
+	margin: 0 20px 0 0;
+	float: right;
+	padding: 3px 5px 2px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5) inset, 0 1px 0 rgba(255,255,255,0.2);
+}
+
+#sidebar > ul > li > ul > li > dl {
+	border-top: 1px solid #4E4E4E;
+	background-color: #2A2A2A;
+}
+
+#sidebar > ul > li > ul > li > dl > dd > a{
+	padding: 10px 0 10px 25px;
+	display: block;
+	color: #777777;
+}
+
+#sidebar > ul > li > ul > li > dl > dd > a {
+	border-top: 1px solid #333333;
+	border-bottom: 1px solid #202020;
+}
+
+#sidebar > ul > li > ul > li > dl > dd > div:first-child a {
+	border-top: 0;
+}
+#sidebar > ul > li > ul > li > dl > dd > div:last-child a {
+	border-bottom: 0;
+}
+
+/* 二级菜单高亮 */
+#sidebar > ul > li > ul > li > dl > dd > a:hover, #sidebar > ul > li > ul > li > dl > dd > div.active a {
+  color: #CCCCCC;
+  background-color: #272727;
+}
+
+/* 模块导航 */
+#module-list {
+  position: absolute;
+  left: 300px;
+  top: 42px;
+  z-index: 11;
+  margin: 0;
+}
+
+#module-list .nav-pills > li > a {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#module-list .nav-pills > li > a {
+    color: #aaaaaa;
+    font-size: 15px;
+}
+
+#module-list .nav-pills > li > a:hover, #module-list .nav-pills > li > a:focus {
+  color: #222222;
+  background-color: #aaaaaa;
+}
+
+#module-list .nav-pills > .active > a, #module-list .nav-pills > .active > a:hover, #module-list .nav-pills > .active > a:focus {
+  color: #fff;
+  background-color: #555555;
+}
+
+/* 页面内导航 */
+.nav-tab-head {
+    margin-bottom: 0;
+}
+
+.nav-tab-content {
+    background-color: #fff;
+    padding: 15px;
+    padding-top: 0px;
+}
+
+/* 内容头不要在导航上突出 */
+#content-header {
+    margin-top: 0 !important;
+}
+
+/* 表单内容label样式 */
+.controls label {
+    display: inline-block;
+    margin: 2px 6px;
+}

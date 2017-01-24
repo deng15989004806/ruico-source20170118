@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messages>
+  <msg name="Key"><![CDATA[菜单KEY值]]></msg>
+  <msg name="AppId"><![CDATA[应用Id值]]></msg>
+  <msg name="Parent"><![CDATA[父级菜单]]></msg>
+
+  <msg name="Add_AppMenu"><![CDATA[添加菜单]]></msg>
+  <msg name="Update_AppMenu"><![CDATA[更新菜单]]></msg>
+  <msg name="Remove_AppMenu"><![CDATA[删除菜单]]></msg>
+  <msg name="AppMenu_Exists_WithValue"><![CDATA[菜单'{0}'已存在]]></msg>
+  <msg name="AppMenu_NotExists"><![CDATA[菜单不存在]]></msg>
+</messages>

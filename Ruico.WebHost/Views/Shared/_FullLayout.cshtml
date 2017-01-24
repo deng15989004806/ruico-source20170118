@@ -1,0 +1,33 @@
+﻿@using Ruico.WebHost.Models.System
+@{
+    var modules = ViewBag.ExtModules as List<ExtModuleDTO>;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ruico System</title>
+    <meta charset="UTF-8" />
+    @Styles.Render("~/Content/css")
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    @Html.Partial("_Confirm")
+
+    @Html.Partial("_Popup")
+
+    @Html.Partial("_Header")
+
+    @Html.Partial("_Modules", modules)
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @RenderBody()
+
+    @Html.Partial("_Footer")
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/unicorn")
+    @Scripts.Render("~/bundles/common")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

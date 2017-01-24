@@ -1,0 +1,76 @@
+﻿@using PagedList.Mvc
+@using Ruico.Dto.KaoQin
+@model PagedList.IPagedList<Ruico.Dto.KaoQin.WeiDaKaDTO>
+@{
+    ViewBag.Title = "Ruico-考勤系统";
+    //ViewBag.Title = "未打卡申请记录";
+}
+
+@Html.Partial("_NavApprove")
+
+<div class="row-fluid">
+    <div class="span12">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+
+                    <ul class="nav nav-pills">
+                        <li>
+                            <a href="@Url.Action("PendingApprove")">待审批</a>
+                        </li>
+                        <li class="active"><a href="@Url.Action("Approved")">已审批</a></li>
+                    </ul>
+
+                    @if (Model.Count == 0)
+                    {
+                        <div class="well">
+                            <p>没有相关的记录</p>
+                        </div>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            KaoQinStatusDTO status;
+                            Enum.TryParse(item.Status, true, out status);
+
+                            <div class="well">
+                                <h4>提交时间：@item.Created.DisplayDateHourMinute()</h4>
+                                <p>姓名,部门,职位：@item.Name / @item.Department / @item.Position</p>
+                                <p>未打卡时间：@item.ActionTime.DisplayDateWeekDay()</p>
+                                <p>未打卡类型：@item.Type</p>
+                                <p>未打卡原因：@item.Reason</p>
+                                <p>
+                                    状态：@Html.Raw(status.DisplayStatusText())
+                                    @if (status == KaoQinStatusDTO.Approved)
+                                    {
+                                    <span>@item.Approved.DisplayDateHourMinute()</span>
+                                    }
+                                </p>
+                                @if (status == KaoQinStatusDTO.Approved)
+                                {
+                                    <p>部门/公司意见：@item.DepartmentOrCompanyOpinion</p>
+                                }
+                                <p>
+                                    <a href="@Url.Action("Approve", new {id = @item.Id})">修改审批</a>
+                                </p>
+                            </div>
+                        }
+
+                        <div class="pagination">
+                            @Html.PagedListPager(
+                                    Model,
+                                    page => Url.Action(
+                                        "Index",
+                                        new RouteValueDictionary(new
+                                        {
+                                            page,
+                                        })),
+                                    CustomDisplayExtensions.PagedListRenderOptions)
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

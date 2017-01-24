@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messages>
+  <msg name="DepartmentId"><![CDATA[部门Id]]></msg>
+  <msg name="ParentId"><![CDATA[父级Id]]></msg>
+  
+  <msg name="Add_Department"><![CDATA[添加部门]]></msg>
+  <msg name="Update_Department"><![CDATA[更新部门]]></msg>
+  <msg name="Remove_Department"><![CDATA[删除部门]]></msg>
+  <msg name="Department_Exists_WithValue"><![CDATA[部门'{0}'已存在]]></msg>
+  <msg name="Department_NotExists"><![CDATA[部门不存在]]></msg>
+  <msg name="DepartmentId_Empty"><![CDATA[部门Id必须大于0]]></msg>
+  <msg name="DepartmentParentId_Empty"><![CDATA[部门父级Id必须大于0]]></msg>
+
+  <msg name="Add_Member"><![CDATA[添加员工]]></msg>
+  <msg name="Update_Member"><![CDATA[更新员工]]></msg>
+  <msg name="Remove_Member"><![CDATA[删除员工]]></msg>
+  <msg name="Member_Exists_WithValue"><![CDATA[员工'{0}'已存在]]></msg>
+  <msg name="Member_NotExists"><![CDATA[员工不存在]]></msg>
+  <msg name="Member_UserId_Empty"><![CDATA[员工编号不能为空]]></msg>
+
+</messages>

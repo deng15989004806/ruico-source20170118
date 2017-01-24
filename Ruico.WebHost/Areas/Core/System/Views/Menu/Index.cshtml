@@ -1,0 +1,124 @@
+﻿@using PagedList.Mvc
+@using Ruico.WebHost
+@model PagedList.IPagedList<Ruico.Dto.UserSystem.MenuDTO>
+@{
+    ViewBag.Title = "菜单管理";
+    var menuName = ViewBag.MenuName;
+
+    var groups = Model.GroupBy(x => new {x.Module.Id, x.Module.Name});
+}
+
+
+    <div id="content-header">
+        <h1>菜单管理</h1>
+    </div>
+    <div id="breadcrumb">
+        <a href="@Url.Action("Index", "Home", new { area = "" }, null)" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+        <a href="@Url.Action("Index")">菜单管理</a>
+
+    </div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            @using (Ajax.BeginForm("SearchMenu", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess" }, new { @class = "form-inline" }))
+            {
+                <section>
+                    <input type="text" name="menuName" id="menuName" class="input-medium" placeholder="菜单名称" value="@menuName">&nbsp; &nbsp;
+                    <button type="submit" class="btn btn-primary">查询</button>&nbsp; &nbsp;
+                    <a href="@Url.Action("EditMenu")" class="btn btn-success" id="addnew">新增菜单</a>
+                </section>
+            }
+        <br />
+        </div>
+        
+
+        <ul class="nav nav-tabs nav-tab-head" id="menuTab">
+            @foreach (var g in groups)
+            {
+                <li><a href="#@g.Key.Id" data-toggle="tab">@g.Key.Name</a></li>
+            }
+        </ul>
+        
+        <div class="nav-tab-content">
+            <div class=" tab-content nopadding" id="menuTabContent">
+                @foreach (var g in groups)
+                {
+                    var allList = g.ToList();
+                    var list = new List<Ruico.Dto.UserSystem.MenuDTO>();
+                    foreach (var m1 in allList.Where(x => x.Depth == 1))
+                    {
+                        list.Add(m1);
+                        foreach (var m2 in allList.Where(x => x.Parent != null && x.Parent.Id == m1.Id))
+                        {
+                            list.Add(m2);
+                            foreach (var m3 in allList.Where(x => x.Parent != null && x.Parent.Id == m2.Id))
+                            {
+                                list.Add(m3);
+                            }
+                        }
+                    }
+
+                    <div class="tab-pane" id="@g.Key.Id">
+                        <div class="widget-box">
+                            <div class="widget-content nopadding">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>菜单名称</th>
+                                            <th>菜单代码</th>
+                                            <th>菜单链接</th>
+                                            <th>排序</th>
+                                            <th>添加时间</th>
+                                            <th>操作</th>
+                                            <th>操作日志</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in list)
+                                        {
+                                            var prex = "";
+                                            for(var i=1;i<item.Depth;i++)
+                                            {
+                                                prex += "------------>";
+                                            }
+                                            <tr>
+                                                <td>@Html.Raw(prex) @item.Name</td>
+                                                <td>@item.Code</td>
+                                                <td>@item.Url</td>
+                                                <td>@item.SortOrder</td>
+                                                <td>@item.Created.Display()</td>
+                                                <td>
+                                                    <a href="@Url.Action("MenuPermissionList", new {menuId = @item.Id})"><i class="icon-list"></i>权限</a>
+                                                    <a href="@Url.Action("EditMenu", new {id = @item.Id})"><i class="icon-edit"></i>编辑</a>
+                                                    <a href="@Url.Action("RemoveMenu", new {id = @item.Id})" class="ajax-remove" data-name="@item.Name"><i class="icon-remove"></i>删除</a>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <a href="javascript:void(0);" class="ajax-popup" data-url="@Url.Action("List", "OperateLog", new { sn = @item.Id })" data-title="【菜单 @item.Name】操作记录" data-width="800" data-height="400"><i class="icon-list"></i>查看</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            }
+            </div>  <!--tab-content-->
+        </div>
+    </div>
+</div>
+    
+<script>
+  $(function () {
+      $('#menuTab a:first').tab('show');
+      $('#menuTabContent .tab-pane:first').addClass('active');
+
+      $('#menuTab a').click(function(e) {
+          e.preventDefault(); //阻止a链接的跳转行为 
+          $(this).tab('show'); //显示当前选中的链接及关联的content 
+      });
+  })
+</script>

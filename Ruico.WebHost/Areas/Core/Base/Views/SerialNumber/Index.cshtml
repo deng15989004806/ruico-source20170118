@@ -1,0 +1,63 @@
+﻿@using PagedList.Mvc
+@using Ruico.WebHost
+@model PagedList.IPagedList<Ruico.Dto.System.SerialNumberDTO>
+@{
+    ViewBag.Title = "流水号管理";
+}
+
+
+<div id="content-header">
+    <h1>流水号管理</h1>
+</div>
+<div id="breadcrumb">
+    <a href="@Url.Action("Index", "Home", new { area = "" }, null)" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+    <a href="@Url.Action("Index")">流水号管理</a>
+
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>前缀</th>
+                                <th>日期编号</th>
+                                <th>流水号</th>
+                                <th>创建日期</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Prefix</td>
+                                    <td>@item.DateNumber</td>
+                                    <td>@item.Sequence</td>
+                                    <td>@item.Created.Display()</td>
+                                    <td>
+                                        <a href="@Url.Action("RemoveSerialNumber", new { id = @item.Id })" class="ajax-remove" data-name="@item.Prefix @item.DateNumber"><i class="icon-remove"></i>删除</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="pagination pagination-right">
+                @Html.PagedListPager(
+                        Model,
+                        page => Url.Action(
+                            "Index",
+                            new RouteValueDictionary(new
+                            {
+                                page,
+                            })),
+                            CustomDisplayExtensions.PagedListRenderOptions)
+            </div>
+        </div>
+    </div>
+</div>

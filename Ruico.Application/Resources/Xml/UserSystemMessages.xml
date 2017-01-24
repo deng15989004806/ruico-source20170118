@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messages>
+  <msg name="User"><![CDATA[用户]]></msg>
+  <msg name="Permission"><![CDATA[权限]]></msg>
+  <msg name="LoginName"><![CDATA[登陆名]]></msg>
+  <msg name="Email"><![CDATA[邮箱]]></msg>
+  <msg name="Password"><![CDATA[密码]]></msg>
+  <msg name="Module"><![CDATA[模块]]></msg>
+  <msg name="Parent_Menu"><![CDATA[父级菜单]]></msg>
+
+  <msg name="Name_Empty"><![CDATA[名称不能为空]]></msg>
+  <msg name="Module_Empty"><![CDATA[模块不能为空]]></msg>
+  <msg name="Email_Empty"><![CDATA[邮箱不能为空]]></msg>
+  <msg name="LoginName_Empty"><![CDATA[登陆名不能为空]]></msg>
+  <msg name="Password_Empty"><![CDATA[密码不能为空]]></msg>
+  <msg name="LoginName_NotExists_WithValue"><![CDATA[登陆名'{0}'不存在]]></msg>
+  <msg name="Password_Incorrect"><![CDATA[密码不正确]]></msg>
+  <msg name="LoginToken_Empty"><![CDATA[登陆Token不能为空]]></msg>
+  <msg name="LoginToken_Invalid"><![CDATA[登陆Token无效]]></msg>
+  
+  <msg name="Add_Menu"><![CDATA[添加菜单]]></msg>
+  <msg name="Update_Menu"><![CDATA[更新菜单]]></msg>
+  <msg name="Remove_Menu"><![CDATA[删除菜单]]></msg>
+  <msg name="Menu_Exists_WithValue"><![CDATA[菜单'{0}'已存在]]></msg>
+  <msg name="Menu_NotExists"><![CDATA[菜单不存在]]></msg>
+  <msg name="Menu_UpdateChildMenuModule"><![CDATA[随父级菜单更改模块]]></msg>
+  <msg name="Add_Permission"><![CDATA[添加权限]]></msg>
+  <msg name="Update_Permission"><![CDATA[更新权限]]></msg>
+  <msg name="Remove_Permission"><![CDATA[删除权限]]></msg>
+
+  <msg name="Add_Module"><![CDATA[添加模块]]></msg>
+  <msg name="Update_Module"><![CDATA[更新模块]]></msg>
+  <msg name="Remove_Module"><![CDATA[删除模块]]></msg>
+  <msg name="Module_Exists_WithValue"><![CDATA[模块'{0}'已存在]]></msg>
+  <msg name="Module_NotExists"><![CDATA[模块不存在]]></msg>
+
+  <msg name="Add_RoleGroup"><![CDATA[添加角色组]]></msg>
+  <msg name="Update_RoleGroup"><![CDATA[更新角色组]]></msg>
+  <msg name="Remove_RoleGroup"><![CDATA[删除角色组]]></msg>
+  <msg name="RoleGroup_Exists_WithValue"><![CDATA[角色组'{0}'已存在]]></msg>
+  <msg name="RoleGroup_NotExists"><![CDATA[角色组不存在]]></msg>
+  <msg name="Add_RoleGroupUser"><![CDATA[添加角色组用户]]></msg>
+  <msg name="Remove_RoleGroupUser"><![CDATA[删除角色组用户]]></msg>
+
+  <msg name="Add_Role"><![CDATA[添加角色]]></msg>
+  <msg name="Update_Role"><![CDATA[更新角色]]></msg>
+  <msg name="Remove_Role"><![CDATA[删除角色]]></msg>
+  <msg name="Role_Exists_WithValue"><![CDATA[角色'{0}'已存在]]></msg>
+  <msg name="Role_NotExists"><![CDATA[角色不存在]]></msg>
+  <msg name="Add_RolePermission"><![CDATA[添加角色权限]]></msg>
+  <msg name="Remove_RolePermission"><![CDATA[删除角色权限]]></msg>
+
+  <msg name="Add_User"><![CDATA[添加用户]]></msg>
+  <msg name="Update_User"><![CDATA[更新用户]]></msg>
+  <msg name="Remove_User"><![CDATA[删除用户]]></msg>
+  <msg name="User_Exists_Name_WithValue"><![CDATA[用户名称'{0}'已存在]]></msg>
+  <msg name="User_Exists_LoginName_WithValue"><![CDATA[用户登陆名'{0}'已存在]]></msg>
+  <msg name="User_Exists_Email"><![CDATA[用户邮箱'{0}'已存在]]></msg>
+  <msg name="User_NotExists"><![CDATA[用户不存在]]></msg>
+  <msg name="Add_UserPermission"><![CDATA[添加用户权限]]></msg>
+  <msg name="Remove_UserPermission"><![CDATA[删除用户权限]]></msg>
+  
+</messages>

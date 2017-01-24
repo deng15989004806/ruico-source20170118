@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messages>
+  <msg name="Category"><![CDATA[类型]]></msg>
+  <msg name="Parent_Category"><![CDATA[父级类型]]></msg>
+  <msg name="Child_SerialNumberRule_Prefix"><![CDATA[子级编码规则前缀]]></msg>
+  <msg name="Child_SerialNumberRule_NumberLength"><![CDATA[子级编码规则流水号位数]]></msg>
+  <msg name="Contact"><![CDATA[联系人]]></msg>
+  <msg name="Phone"><![CDATA[电话]]></msg>
+  <msg name="Fax"><![CDATA[传真]]></msg>
+  <msg name="Mobile"><![CDATA[手机号]]></msg>
+  <msg name="Address"><![CDATA[地址]]></msg>
+  <msg name="Postcode"><![CDATA[邮编]]></msg>
+  <msg name="Email"><![CDATA[邮箱]]></msg>
+  
+  <msg name="Add_Cargo"><![CDATA[添加货品]]></msg>
+  <msg name="Update_Cargo"><![CDATA[更新货品]]></msg>
+  <msg name="Remove_Cargo"><![CDATA[删除货品]]></msg>
+  <msg name="Cargo_Exists_WithValue"><![CDATA[货品'{0}'已存在]]></msg>
+  <msg name="Cargo_NotExists"><![CDATA[货品不存在]]></msg>
+
+  <msg name="Add_Category"><![CDATA[添加类型]]></msg>
+  <msg name="Update_Category"><![CDATA[更新类型]]></msg>
+  <msg name="Remove_Category"><![CDATA[删除类型]]></msg>
+  <msg name="Category_Exists_WithValue"><![CDATA[类型'{0}'已存在]]></msg>
+  <msg name="Category_NotExists"><![CDATA[类型不存在]]></msg>
+  <msg name="Category_Parent_SerialNumberRule_Prefix_Empty"><![CDATA[父级编码规则，前缀不能为空]]></msg>
+  <msg name="Category_Parent_SerialNumberRule_NumberLength_NotGreat_Than_Zero"><![CDATA[父级编码规则，流水号位数必须大于0]]></msg>
+
+  <msg name="Add_SerialNumberRule"><![CDATA[添加编码规则]]></msg>
+  <msg name="Update_SerialNumberRule"><![CDATA[更新编码规则]]></msg>
+  <msg name="Remove_SerialNumberRule"><![CDATA[删除编码规则]]></msg>
+  <msg name="SerialNumberRule_Exists"><![CDATA[编码规则'{0}'已存在]]></msg>
+  <msg name="SerialNumberRule_NotExists"><![CDATA[编码规则不存在]]></msg>
+  <msg name="NumberLength_NotGreat_Than_Zero"><![CDATA[流水号位数必须大于0]]></msg>
+  <msg name="SerialNumberRule_Prefix"><![CDATA[编码规则前缀]]></msg>
+  <msg name="SerialNumberRule_UseDateNumber"><![CDATA[是否使用日期]]></msg>
+  <msg name="SerialNumberRule_NumberLength"><![CDATA[编码规则流水号位数]]></msg>
+  <msg name="SerialNumberRule_NotExists_WithValue"><![CDATA[编码规则'{0}'不存在]]></msg>
+  
+  <msg name="Add_Ship"><![CDATA[添加船舶]]></msg>
+  <msg name="Update_Ship"><![CDATA[更新船舶]]></msg>
+  <msg name="Remove_Ship"><![CDATA[删除船舶]]></msg>
+  <msg name="Ship_Exists_WithValue"><![CDATA[船舶'{0}'已存在]]></msg>
+  <msg name="Ship_NotExists"><![CDATA[船舶不存在]]></msg>
+  
+  <msg name="Add_Company"><![CDATA[添加公司]]></msg>
+  <msg name="Update_Company"><![CDATA[更新公司]]></msg>
+  <msg name="Remove_Company"><![CDATA[删除公司]]></msg>
+  <msg name="Company_Exists_WithValue"><![CDATA[公司'{0}'已存在]]></msg>
+  <msg name="Company_NotExists"><![CDATA[公司不存在]]></msg>
+  
+</messages>

@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "微信菜单管理";
+    var apps = ViewBag.Apps as List<NameValueDTO> ?? new List<NameValueDTO>();
+    var appId = ViewBag.AppId != null ? (int)ViewBag.AppId : 0;
+    var appIdValue = appId > 0 ? appId.ToString() : "";
+    var appItems = apps.Select(x =>
+new SelectListItem() { Text = x.Name, Value = x.Value, Selected = (appId > 0 ? appId.ToString() : "") == x.Value }).ToList();
+    appItems.Insert(0, new SelectListItem() { Text = "请选择", Value = "" });
+
+    var parentId = (Model.Parent != null && Model.Parent.Id != Guid.Empty) ? Model.Parent.Id.ToString() : "";
+
+    var menus = ViewBag.Menus as List<AppMenuDTO> ?? new List<AppMenuDTO>();
+
+    var list = menus.Where(x => x.Parent == null);
+}
+@using Ruico.Dto.Weixin
+@using Ruico.Dto.Common
+@model Ruico.Dto.Weixin.AppMenuDTO
+<div id="content-header">
+    <h1>微信菜单管理</h1>
+</div>
+<div id="breadcrumb">
+    <a href="@Url.Action("Index", "Home", new { area = "" }, null)" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+    <a href="@Url.Action("Index")">微信菜单管理</a>
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon">
+                        <i class="icon-align-justify"></i>
+                    </span>
+                    <h5>添加 / 编辑微信菜单</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    @using (Ajax.BeginForm("EditAppMenu", new {id = Model.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "ajaxRequestSuccess"}, new {@class = "form-horizontal"}))
+                    {
+                        <div class="control-group">
+                            <label class="control-label">应用</label>
+                            <div class="controls">
+                                @Html.DropDownList("appId", appItems, new {placeholder = "应用", @class = "input-medium"})
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">父级菜单</label>
+                            <div class="controls">
+                                <select id="Parent" name="Parent" class="input-medium">
+                                    <option value="">======无======</option>
+                                    @foreach (var item in list)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">名称</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.Name, new {placeholder = "名称", @class = "input-small"})
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Key</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.Key, new {placeholder = "Key", @class = "input-xlarge"})
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Url</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.Url, new {placeholder = "Url", @class = "input-xlarge"})
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">排序</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.SortOrder, new {placeholder = "排序", @class = "input-small"})
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#appId").val('@appId');
+        $("#Parent").val('@parentId');
+
+        $("#appId").change(function () {
+            location.href = '@Url.Action("EditAppMenu")' + "?appId=" + $(this).val();
+        });
+    })
+</script>

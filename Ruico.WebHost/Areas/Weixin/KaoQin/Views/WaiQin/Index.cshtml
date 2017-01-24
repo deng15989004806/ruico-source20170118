@@ -1,0 +1,86 @@
+﻿@using PagedList.Mvc
+@using Ruico.Dto.KaoQin
+@model PagedList.IPagedList<Ruico.Dto.KaoQin.WaiQinDTO>
+@{
+    ViewBag.Title = "Ruico-考勤系统";
+    //ViewBag.Title = "外出申请记录";
+}
+
+@Html.Partial("_NavApply")
+
+<div class="row-fluid">
+    <div class="span12">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+
+                    <ul class="nav nav-pills">
+                        <li>
+                            <a href="@Url.Action("Apply")">添加申请</a>
+                        </li>
+                        <li class="active"><a href="@Url.Action("Index")">历史记录</a></li>
+                    </ul>
+
+                    @if (Model.Count == 0)
+                    {
+                        <div class="well">
+                            <p>没有相关的记录</p>
+                        </div>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            KaoQinStatusDTO status;
+                            Enum.TryParse(item.Status, true, out status);
+
+                            <div class="well">
+                                <h4>提交时间：@item.Created.DisplayDateHourMinute()</h4>
+                                <p>外出时间：@item.OutTime.DisplayDateHourMinuteWeekDay()</p>
+                                <p>返回时间：@item.InTime.DisplayDateHourMinuteWeekDay()</p>
+                                <p>外出地点：@item.OutPlace</p>
+                                <p>外出事由：@item.OutReason</p>
+                                <p>指派人：@item.AppointPerson</p>
+                                <p>
+                                    状态：@Html.Raw(status.DisplayStatusText())
+                                    @if (status == KaoQinStatusDTO.Submited)
+                                    {
+                                        <span>
+                                            <a href="@Url.Action("Cancel", new {id = @item.Id})" class="ajax-cancel-apply" data-name="@item.Created.DisplayDateHourMinute()">取消申请</a>
+                                        </span>
+                                    }
+                                    else if (status == KaoQinStatusDTO.Canceled)
+                                    {
+                                        <span>@item.Canceled.DisplayDateHourMinute()</span>
+                                    }
+                                    else if (status == KaoQinStatusDTO.Approved)
+                                    {
+                                        <span>@item.Approved.DisplayDateHourMinute()</span>
+                                    }
+                                </p>
+                                @if (status == KaoQinStatusDTO.Approved)
+                                {
+                                    <p>部门意见：@item.DepartmentOpinion</p>
+                                    <p>总经办意见：@item.GeneralManagerOfficeOpinion</p>
+                                    <p>公司领导意见：@item.CompanyLeaderOpinion</p>
+                                }
+                            </div>
+                        }
+
+                        <div class="pagination">
+                            @Html.PagedListPager(
+                                Model,
+                                page => Url.Action(
+                                    "Index",
+                                    new RouteValueDictionary(new
+                                    {
+                                        page,
+                                    })),
+                                CustomDisplayExtensions.PagedListRenderOptions)
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

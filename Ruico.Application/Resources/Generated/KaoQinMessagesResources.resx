@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Canceled_CanNot_Approved" xml:space="preserve">
+    <value><![CDATA[已取消状态，不能审批]]></value>
+  </data>
+  <data name="Approved_CanNot_Canceled" xml:space="preserve">
+    <value><![CDATA[已审批状态，不能取消]]></value>
+  </data>
+  <data name="UserId_Empty" xml:space="preserve">
+    <value><![CDATA[员工编号不能为空]]></value>
+  </data>
+  <data name="UserName_Empty" xml:space="preserve">
+    <value><![CDATA[姓名不能为空]]></value>
+  </data>
+  <data name="DepartmentId_Empty" xml:space="preserve">
+    <value><![CDATA[部门不能为空]]></value>
+  </data>
+  <data name="Position_Empty" xml:space="preserve">
+    <value><![CDATA[职位不能为空]]></value>
+  </data>
+  <data name="Approve_Opinion_Empty" xml:space="preserve">
+    <value><![CDATA[审批意见不能为空]]></value>
+  </data>
+  <data name="Add_ChuChai" xml:space="preserve">
+    <value><![CDATA[添加出差记录]]></value>
+  </data>
+  <data name="Update_ChuChai" xml:space="preserve">
+    <value><![CDATA[更新出差记录]]></value>
+  </data>
+  <data name="Remove_ChuChai" xml:space="preserve">
+    <value><![CDATA[删除出差记录]]></value>
+  </data>
+  <data name="ChuChai_Exists_WithValue" xml:space="preserve">
+    <value><![CDATA[出差记录已存在，员工编号'{0}'，出差时间'{1}']]></value>
+  </data>
+  <data name="ChuChai_NotExists" xml:space="preserve">
+    <value><![CDATA[出差记录不存在]]></value>
+  </data>
+  <data name="ChuChai_OutPlace_Empty" xml:space="preserve">
+    <value><![CDATA[出差地点不能为空]]></value>
+  </data>
+  <data name="ChuChai_OutReason_Empty" xml:space="preserve">
+    <value><![CDATA[出差事由不能为空]]></value>
+  </data>
+  <data name="ChuChai_OutTime_Greater_Than_InTime" xml:space="preserve">
+    <value><![CDATA[出差时间不能大于返回时间]]></value>
+  </data>
+  <data name="Add_WaiQin" xml:space="preserve">
+    <value><![CDATA[添加外出记录]]></value>
+  </data>
+  <data name="Update_WaiQin" xml:space="preserve">
+    <value><![CDATA[更新外出记录]]></value>
+  </data>
+  <data name="Remove_WaiQin" xml:space="preserve">
+    <value><![CDATA[删除外出记录]]></value>
+  </data>
+  <data name="WaiQin_Exists_WithValue" xml:space="preserve">
+    <value><![CDATA[外出记录已存在，员工编号'{0}'，外出时间'{1}']]></value>
+  </data>
+  <data name="WaiQin_NotExists" xml:space="preserve">
+    <value><![CDATA[外出记录不存在]]></value>
+  </data>
+  <data name="WaiQin_OutPlace_Empty" xml:space="preserve">
+    <value><![CDATA[外出地点不能为空]]></value>
+  </data>
+  <data name="WaiQin_OutReason_Empty" xml:space="preserve">
+    <value><![CDATA[外出事由不能为空]]></value>
+  </data>
+  <data name="WaiQin_OutTime_Greater_Than_InTime" xml:space="preserve">
+    <value><![CDATA[外出时间不能大于返回时间]]></value>
+  </data>
+  <data name="Add_WeiDaKa" xml:space="preserve">
+    <value><![CDATA[添加未打卡记录]]></value>
+  </data>
+  <data name="Update_WeiDaKa" xml:space="preserve">
+    <value><![CDATA[更新未打卡记录]]></value>
+  </data>
+  <data name="Remove_WeiDaKa" xml:space="preserve">
+    <value><![CDATA[删除未打卡记录]]></value>
+  </data>
+  <data name="WeiDaKa_Exists_WithValue" xml:space="preserve">
+    <value><![CDATA[未打卡记录已存在，员工编号'{0}'，未打卡时间'{1}'，未打卡类型'{2}']]></value>
+  </data>
+  <data name="WeiDaKa_NotExists" xml:space="preserve">
+    <value><![CDATA[未打卡记录不存在]]></value>
+  </data>
+  <data name="WeiDaKa_Reason_Empty" xml:space="preserve">
+    <value><![CDATA[未打卡原因不能为空]]></value>
+  </data>
+  <data name="WeiDaKa_Type_Empty" xml:space="preserve">
+    <value><![CDATA[未打卡类型不能为空]]></value>
+  </data>
+  <data name="Add_XiuJia" xml:space="preserve">
+    <value><![CDATA[添加休假记录]]></value>
+  </data>
+  <data name="Update_XiuJia" xml:space="preserve">
+    <value><![CDATA[更新休假记录]]></value>
+  </data>
+  <data name="Remove_XiuJia" xml:space="preserve">
+    <value><![CDATA[删除休假记录]]></value>
+  </data>
+  <data name="XiuJia_Exists_WithValue" xml:space="preserve">
+    <value><![CDATA[休假记录已存在，员工编号'{0}'，休假开始时间'{1}']]></value>
+  </data>
+  <data name="XiuJia_NotExists" xml:space="preserve">
+    <value><![CDATA[休假记录不存在]]></value>
+  </data>
+  <data name="XiuJia_StartTime_Greater_Than_EndTime" xml:space="preserve">
+    <value><![CDATA[开始时间不能大于结束时间]]></value>
+  </data>
+  <data name="XiuJia_Reason_Empty" xml:space="preserve">
+    <value><![CDATA[请假事由不能为空]]></value>
+  </data>
+  <data name="XiuJia_Type_Empty" xml:space="preserve">
+    <value><![CDATA[请假类别不能为空]]></value>
+  </data>
+  <data name="XiuJia_Days_Hours_Empty" xml:space="preserve">
+    <value><![CDATA[天数和小时数不能同时为空]]></value>
+  </data>
+</root>
